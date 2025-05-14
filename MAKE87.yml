@@ -2,8 +2,8 @@ build_kit:
   name: rust
   version: latest
 inbound_topics:
-  - name: RGB_FRAME
-    message_type: make87_messages.image.uncompressed.image_rgb888.ImageRGB888
+  - name: RAW_FRAME
+    message_type: make87_messages.image.uncompressed.ImageRawAny
 outbound_topics:
   - name: JPEG_FRAME
     message_type: make87_messages.image.compressed.image_jpeg.ImageJPEG

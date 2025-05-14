@@ -1,11 +1,11 @@
 # RGB-to-JPEG Converter
 
-This application listens for incoming `ImageRgb888` messages, compresses each frame using TurboJPEG, and publishes the
+This application listens for incoming `ImageRawAny` messages, compresses each frame using TurboJPEG, and publishes the
 result as an `ImageJpeg` message.
 
 ## 📦 Features
 
-- Receives raw RGB888 image frames
+- Receives raw image frames in any supported format (`RGB888`, `RGBA8888`, `YUV420`, `YUV422`, `YUV444`)
 - Compresses each frame using libjpeg-turbo (`turbojpeg` crate)
 - Publishes JPEG-compressed frames to the make87 message bus
 - Reuses a single JPEG compressor for performance
@@ -19,7 +19,13 @@ result as an `ImageJpeg` message.
 
 ## 📥 Input
 
-Subscribes to the `RGB_FRAME` topic and expects messages of type `ImageRgb888`.
+Subscribes to the `RAW_FRAME` topic and expects messages of type `ImageRawAny`.  
+Supported variants:
+- `ImageRGB888`
+- `ImageRGBA8888`
+- `ImageYUV420`
+- `ImageYUV422`
+- `ImageYUV444`
 
 ## 📤 Output
 
@@ -37,3 +43,4 @@ JPEG-compressed image data.
 ---
 
 © make87, 2025
+
