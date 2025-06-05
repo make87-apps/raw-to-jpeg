@@ -11,11 +11,65 @@ interfaces:
         spec:
           make87_message: make87_messages.image.uncompressed.ImageRawAny
         encoding: proto
+        config:
+          type: object
+          properties:
+            handler:
+              type: object
+              default:
+                handler_type: RING
+                capacity: 10
+              oneOf:
+                - properties:
+                    handler_type:
+                      const: FIFO
+                    capacity:
+                      type: integer
+                      minimum: 0
+                  required: [ handler_type, capacity ]
+                  additionalProperties: false
+                - properties:
+                    handler_type:
+                      const: RING
+                    capacity:
+                      type: integer
+                      minimum: 0
+                  required: [ handler_type, capacity ]
+                  additionalProperties: false
+          required: [ handler ]
+          additionalProperties: false
     publishers:
       - name: jpeg_frame
         spec:
           make87_message: make87_messages.image.compressed.image_jpeg.ImageJPEG
         encoding: proto
+        config:
+          type: object
+          properties:
+            congestion_control:
+              type: string
+              enum: [ DROP, BLOCK ]
+              default: DROP
+            priority:
+              type: string
+              enum:
+                - REAL_TIME
+                - INTERACTIVE_HIGH
+                - INTERACTIVE_LOW
+                - DATA_HIGH
+                - DATA
+                - DATA_LOW
+                - BACKGROUND
+              default: DATA
+            express:
+              type: boolean
+              default: true
+            reliability:
+              type: string
+              enum: [ BEST_EFFORT, RELIABLE ]
+              default: RELIABLE
+          required: [ congestion_control, priority, express, reliability ]
+          additionalProperties: false
 config:
   type: object
   properties:
