@@ -66,3 +66,6 @@ config:
 build:
   build_kit:
     name: rust
+dev_build:
+  build_kit:
+    name: rust
