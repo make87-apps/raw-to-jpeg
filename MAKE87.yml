@@ -16,28 +16,16 @@ interfaces:
           properties:
             handler:
               type: object
-              default:
-                handler_type: RING
-                capacity: 10
-              oneOf:
-                - properties:
-                    handler_type:
-                      const: FIFO
-                    capacity:
-                      type: integer
-                      minimum: 0
-                  required: [ handler_type, capacity ]
-                  additionalProperties: false
-                - properties:
-                    handler_type:
-                      const: RING
-                    capacity:
-                      type: integer
-                      minimum: 0
-                  required: [ handler_type, capacity ]
-                  additionalProperties: false
-          required: [ handler ]
-          additionalProperties: false
+              properties:
+                handler_type:
+                  type: string
+                  enum: [ FIFO, RING ]
+                  default: RING
+                capacity:
+                  type: integer
+                  minimum: 0
+                  description: "Capacity of the handler. For FIFO, this is the maximum number of messages it can hold. For RING, this is the size of the ring buffer."
+                  default: 10
     publishers:
       - name: jpeg_frame
         spec:
@@ -68,8 +56,6 @@ interfaces:
               type: string
               enum: [ BEST_EFFORT, RELIABLE ]
               default: RELIABLE
-          required: [ congestion_control, priority, express, reliability ]
-          additionalProperties: false
 config:
   type: object
   properties:
