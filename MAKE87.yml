@@ -9,12 +9,12 @@ interfaces:
     subscribers:
       - name: raw_frame
         spec:
-          message_type: make87_messages.image.uncompressed.ImageRawAny
+          make87_message: make87_messages.image.uncompressed.ImageRawAny
         encoding: proto
     publishers:
       - name: jpeg_frame
         spec:
-          message_type: make87_messages.image.compressed.image_jpeg.ImageJPEG
+          make87_message: make87_messages.image.compressed.image_jpeg.ImageJPEG
         encoding: proto
 config:
   type: object
