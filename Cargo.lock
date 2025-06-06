@@ -1327,9 +1327,9 @@ dependencies = [
 
 [[package]]
 name = "make87"
-version = "0.1.0-dev0"
+version = "0.1.0-dev1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ccf7ebcd91352a57a199167140236ad70c0aa3ab79fcb61cb6df233094d08401"
+checksum = "2f7ef2bcd2e62fec49cb4b0a100cdb70afa7c90e496bdd4839b2aad05f906eb6"
 dependencies = [
  "prost",
  "serde",
