@@ -1,4 +1,4 @@
-# RGB-to-JPEG Converter
+# RAW-to-JPEG Converter
 
 This application listens for incoming `ImageRawAny` messages, compresses each frame using TurboJPEG, and publishes the
 result as an `ImageJpeg` message.
