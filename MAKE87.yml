@@ -63,6 +63,9 @@ config:
         type: integer
         description: "Quality setting for JPEG compression (0-100). Defaults to 90."
         default: 90
+container_config:
+  environment:
+    RUST_LOG: info
 build:
   build_kit:
     name: rust
